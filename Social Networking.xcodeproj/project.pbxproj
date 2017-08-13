@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08769B981F3FBA5000FC4E6B /* UIView+Social-Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08769B971F3FBA5000FC4E6B /* UIView+Social-Networking.swift */; };
+		08769B9B1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08769B9A1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift */; };
+		08769BA11F4112E100FC4E6B /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08769BA01F4112E100FC4E6B /* InsetTextField.swift */; };
 		088723231F3E8A2F00F08FED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088723221F3E8A2F00F08FED /* AppDelegate.swift */; };
 		088723251F3E8A2F00F08FED /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088723241F3E8A2F00F08FED /* SignInVC.swift */; };
 		088723281F3E8A2F00F08FED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088723261F3E8A2F00F08FED /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08769B971F3FBA5000FC4E6B /* UIView+Social-Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Social-Networking.swift"; sourceTree = "<group>"; };
+		08769B9A1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Social-Networking.swift"; sourceTree = "<group>"; };
+		08769BA01F4112E100FC4E6B /* InsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		0887231F1F3E8A2F00F08FED /* Social Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Networking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		088723221F3E8A2F00F08FED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088723241F3E8A2F00F08FED /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -42,6 +48,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08769B991F40E7E600FC4E6B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		088723161F3E8A2F00F08FED = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +79,7 @@
 				088723361F3E8A6500F08FED /* Model */,
 				088723351F3E8A6100F08FED /* View */,
 				088723341F3E8A5C00F08FED /* Controller */,
+				08769B991F40E7E600FC4E6B /* Utils */,
 				088723371F3E8A6A00F08FED /* Resources */,
 				088723221F3E8A2F00F08FED /* AppDelegate.swift */,
 				0887232B1F3E8A2F00F08FED /* LaunchScreen.storyboard */,
@@ -77,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				088723241F3E8A2F00F08FED /* SignInVC.swift */,
+				08769B9A1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -85,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				088723261F3E8A2F00F08FED /* Main.storyboard */,
+				08769B971F3FBA5000FC4E6B /* UIView+Social-Networking.swift */,
+				08769BA01F4112E100FC4E6B /* InsetTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -249,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				088723251F3E8A2F00F08FED /* SignInVC.swift in Sources */,
+				08769BA11F4112E100FC4E6B /* InsetTextField.swift in Sources */,
 				088723231F3E8A2F00F08FED /* AppDelegate.swift in Sources */,
+				08769B981F3FBA5000FC4E6B /* UIView+Social-Networking.swift in Sources */,
+				08769B9B1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
