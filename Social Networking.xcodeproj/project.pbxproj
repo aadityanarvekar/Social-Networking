@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081E91F31F5445C5007ED21A /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081E91F21F5445C5007ED21A /* AppUser.swift */; };
+		085D1D2B1F41D53900A977D8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085D1D291F41D53900A977D8 /* FBSDKCoreKit.framework */; };
+		085D1D2C1F41D53900A977D8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085D1D2A1F41D53900A977D8 /* FBSDKLoginKit.framework */; };
+		085D1D341F4676A100A977D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D1D331F4676A100A977D8 /* Constants.swift */; };
+		085D1D361F467AE700A977D8 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D1D351F467AE700A977D8 /* FeedVC.swift */; };
+		085D1D391F48FE5A00A977D8 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D1D381F48FE5A00A977D8 /* FeedTableViewCell.swift */; };
+		085D1D3B1F4A574F00A977D8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D1D3A1F4A574F00A977D8 /* DataService.swift */; };
+		085D1D3D1F4B111F00A977D8 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D1D3C1F4B111F00A977D8 /* Posts.swift */; };
 		08769B981F3FBA5000FC4E6B /* UIView+Social-Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08769B971F3FBA5000FC4E6B /* UIView+Social-Networking.swift */; };
 		08769B9B1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08769B9A1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift */; };
 		08769BA11F4112E100FC4E6B /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08769BA01F4112E100FC4E6B /* InsetTextField.swift */; };
@@ -20,6 +28,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081E91F21F5445C5007ED21A /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		085D1D291F41D53900A977D8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		085D1D2A1F41D53900A977D8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		085D1D321F43CA3900A977D8 /* Social Networking-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Social Networking-Bridging-Header.h"; sourceTree = "<group>"; };
+		085D1D331F4676A100A977D8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		085D1D351F467AE700A977D8 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		085D1D381F48FE5A00A977D8 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		085D1D3A1F4A574F00A977D8 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		085D1D3C1F4B111F00A977D8 /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		08769B971F3FBA5000FC4E6B /* UIView+Social-Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Social-Networking.swift"; sourceTree = "<group>"; };
 		08769B9A1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Social-Networking.swift"; sourceTree = "<group>"; };
 		08769BA01F4112E100FC4E6B /* InsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
@@ -42,17 +59,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F483656324CDC69A0357722 /* Pods_Social_Networking.framework in Frameworks */,
+				085D1D2B1F41D53900A977D8 /* FBSDKCoreKit.framework in Frameworks */,
+				085D1D2C1F41D53900A977D8 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		085D1D371F48F75900A977D8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				085D1D3A1F4A574F00A977D8 /* DataService.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		08769B991F40E7E600FC4E6B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				085D1D331F4676A100A977D8 /* Constants.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		08769BA21F41D3ED00FC4E6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				085D1D291F41D53900A977D8 /* FBSDKCoreKit.framework */,
+				085D1D2A1F41D53900A977D8 /* FBSDKLoginKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		088723161F3E8A2F00F08FED = {
@@ -76,11 +113,13 @@
 		088723211F3E8A2F00F08FED /* Social Networking */ = {
 			isa = PBXGroup;
 			children = (
+				085D1D371F48F75900A977D8 /* Service */,
 				088723361F3E8A6500F08FED /* Model */,
 				088723351F3E8A6100F08FED /* View */,
 				088723341F3E8A5C00F08FED /* Controller */,
 				08769B991F40E7E600FC4E6B /* Utils */,
 				088723371F3E8A6A00F08FED /* Resources */,
+				08769BA21F41D3ED00FC4E6B /* Frameworks */,
 				088723221F3E8A2F00F08FED /* AppDelegate.swift */,
 				0887232B1F3E8A2F00F08FED /* LaunchScreen.storyboard */,
 			);
@@ -90,8 +129,9 @@
 		088723341F3E8A5C00F08FED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				088723241F3E8A2F00F08FED /* SignInVC.swift */,
 				08769B9A1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift */,
+				088723241F3E8A2F00F08FED /* SignInVC.swift */,
+				085D1D351F467AE700A977D8 /* FeedVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -102,6 +142,7 @@
 				088723261F3E8A2F00F08FED /* Main.storyboard */,
 				08769B971F3FBA5000FC4E6B /* UIView+Social-Networking.swift */,
 				08769BA01F4112E100FC4E6B /* InsetTextField.swift */,
+				085D1D381F48FE5A00A977D8 /* FeedTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -109,6 +150,8 @@
 		088723361F3E8A6500F08FED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				085D1D3C1F4B111F00A977D8 /* Posts.swift */,
+				081E91F21F5445C5007ED21A /* AppUser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -116,6 +159,7 @@
 		088723371F3E8A6A00F08FED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				085D1D321F43CA3900A977D8 /* Social Networking-Bridging-Header.h */,
 				088723381F3E8AB200F08FED /* GoogleService-Info.plist */,
 				0887232E1F3E8A2F00F08FED /* Info.plist */,
 				088723291F3E8A2F00F08FED /* Assets.xcassets */,
@@ -176,6 +220,7 @@
 					0887231E1F3E8A2F00F08FED = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 6FM74WUGD9;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -265,11 +310,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				085D1D3B1F4A574F00A977D8 /* DataService.swift in Sources */,
 				088723251F3E8A2F00F08FED /* SignInVC.swift in Sources */,
+				085D1D391F48FE5A00A977D8 /* FeedTableViewCell.swift in Sources */,
+				085D1D361F467AE700A977D8 /* FeedVC.swift in Sources */,
 				08769BA11F4112E100FC4E6B /* InsetTextField.swift in Sources */,
 				088723231F3E8A2F00F08FED /* AppDelegate.swift in Sources */,
 				08769B981F3FBA5000FC4E6B /* UIView+Social-Networking.swift in Sources */,
+				085D1D3D1F4B111F00A977D8 /* Posts.swift in Sources */,
 				08769B9B1F40EAF900FC4E6B /* UIViewController+Social-Networking.swift in Sources */,
+				085D1D341F4676A100A977D8 /* Constants.swift in Sources */,
+				081E91F31F5445C5007ED21A /* AppUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +373,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "~/Desktop/iOS_Programming/Social-Networking/FacebookSDKs-iOS-4";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -341,6 +393,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Social Networking/Social Networking-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,6 +426,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "~/Desktop/iOS_Programming/Social-Networking/FacebookSDKs-iOS-4";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -384,6 +438,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Social Networking/Social Networking-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -395,11 +450,21 @@
 			baseConfigurationReference = 15332B0BE3A9401E38B534C8 /* Pods-Social Networking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6FM74WUGD9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Social\\ Networking",
+					"$(PROJECT_DIR)/Social\\ Networking",
+					"$(PROJECT_DIR)/Social\\ Networking",
+					"$(PROJECT_DIR)/Social\\ Networking",
+				);
 				INFOPLIST_FILE = "Social Networking/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aadityanarvekar.Social-Networking";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -409,11 +474,20 @@
 			baseConfigurationReference = 8D78845CF4F31CB4205B549D /* Pods-Social Networking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6FM74WUGD9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Social\\ Networking",
+					"$(PROJECT_DIR)/Social\\ Networking",
+					"$(PROJECT_DIR)/Social\\ Networking",
+					"$(PROJECT_DIR)/Social\\ Networking",
+				);
 				INFOPLIST_FILE = "Social Networking/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aadityanarvekar.Social-Networking";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

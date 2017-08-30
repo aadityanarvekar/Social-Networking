@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EZLoadingActivity.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -15,6 +20,16 @@
 			<false/>
 		</dict>
 		<key>Pods-Social Networking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftKeychainWrapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>UITextField+Shake.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74C677DE451689574507C4285AB942A2</key>
+		<key>3A1EAF92525E3FE27C35118B86E79393</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>64A7777262565EFCB67C49ED4A2910CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79FC3DB2D97D6FB2C6128B5396BB81EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B68B30BAA59D3C581E36B229F5026576</key>
 		<dict>
 			<key>primary</key>
 			<true/>

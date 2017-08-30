@@ -10,4 +10,8 @@ target 'Social Networking' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'    
     pod 'Firebase/Storage'
+    pod 'UITextField+Shake', '~> 1.1'
+    pod 'SwiftKeychainWrapper', '~> 3.0'
+    pod 'EZLoadingActivity', '~> 1.01'
+    
 end

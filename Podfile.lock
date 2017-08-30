@@ -1,4 +1,5 @@
 PODS:
+  - EZLoadingActivity (1.01)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -46,14 +47,20 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SwiftKeychainWrapper (3.0.1)
+  - UITextField+Shake (1.1.2)
 
 DEPENDENCIES:
+  - EZLoadingActivity (~> 1.01)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - SwiftKeychainWrapper (~> 3.0)
+  - UITextField+Shake (~> 1.1)
 
 SPEC CHECKSUMS:
+  EZLoadingActivity: edd7e387e5197b116ce2cccb3fd747ababc2a510
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -64,7 +71,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   nanopb: 22bc080fa3955e2116b6ff3ee6c2cb3c15ab97cb
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  UITextField+Shake: 47cc0429dafb3da580686339ad2da091249a8ea2
 
-PODFILE CHECKSUM: 42bb1799af41f7abeafda9e41f6e9b4ebd57d753
+PODFILE CHECKSUM: 3e4b16bdfe76215b3277c5517abccf97da88bb65
 
 COCOAPODS: 1.2.1

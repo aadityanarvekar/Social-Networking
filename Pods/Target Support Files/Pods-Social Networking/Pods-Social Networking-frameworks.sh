@@ -89,13 +89,19 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/EZLoadingActivity/EZLoadingActivity.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UITextField+Shake/UITextField_Shake.framework"
   install_framework "$BUILT_PRODUCTS_DIR/nanopb/nanopb.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/EZLoadingActivity/EZLoadingActivity.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UITextField+Shake/UITextField_Shake.framework"
   install_framework "$BUILT_PRODUCTS_DIR/nanopb/nanopb.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
