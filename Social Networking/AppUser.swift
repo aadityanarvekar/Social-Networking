@@ -85,17 +85,13 @@ class AppUser {
     }
     
     func toggleLikeStatus(for post: Post) {
-        var liked = false
         if doesUserLikePost(post: post) {
             if let index = postLikes.index(of: post.postId) {
                 postLikes.remove(at: index)
             }
         } else {
-            postLikes.append(post.postId)
-            liked = true
-        }
-        
-        DataService.shared.toggleLikeStatus(for: post, liked: liked)
+            postLikes.append(post.postId)            
+        }                
     }
     
     func doesUserLikePost(post: Post) -> Bool {

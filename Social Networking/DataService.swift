@@ -17,9 +17,14 @@ protocol UserDetailsDownloadComplete {
     func handleUserDetailsDownloadComplete(user: AppUser)
 }
 
+protocol PostingUserDetailsDownloadComplete {
+    func updatePostingUserDetails()
+}
+
 class DataService {
     var downloadCompleteDelegate: PostsDownloadComplete?
     var userDetailsDownloadCompleteDelegate: UserDetailsDownloadComplete?
+    var postingUserDetailsDelgate: PostingUserDetailsDownloadComplete?
     static let shared = DataService()
     var appUser: AppUser?
     var isPostsDownloadComplete = false
@@ -34,19 +39,20 @@ class DataService {
         } else {
             USERS_REF.child(uID).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let userInfo = snapshot.value as? Dictionary<String, Any> {
-                    guard let name = userInfo["name"] as? String, let photoUrl = userInfo["photoUrl"] as? String, let provider = userInfo["provider"] as? String, let likes = userInfo["likes"] as? Dictionary<String, Any> else {
+                    guard let name = userInfo["name"] as? String, let photoUrl = userInfo["photoUrl"] as? String, let provider = userInfo["provider"] as? String else {
                         return
                     }
                     let usr = AppUser(userId: uID, userName: name, provider: provider, photoUrl: URL(string: photoUrl))
-                    for key in likes.keys {
-                        usr.postLikes.append(key)
+                    if let likes = userInfo["likes"] as? Dictionary<String, Any> {
+                        for key in likes.keys {
+                            usr.postLikes.append(key)
+                        }
                     }
                     self.appUser = usr
                     self.userDetailsDownloadCompleteDelegate?.handleUserDetailsDownloadComplete(user: usr)
                 }
             })
         }
-        
     }
     
     func toggleLikeStatus(for post: Post, liked: Bool) {
@@ -76,6 +82,7 @@ class DataService {
                         var likes = 0;
                         var imageUrl = ""
                         var caption = ""
+                        var postingUserId = ""
                         if let dict = post.value as? Dictionary<String, Any> {
                             if let capt = dict["caption"] as? String {
                                 caption = capt
@@ -89,7 +96,12 @@ class DataService {
                                 likes = lks
                             }
                             
-                            let post = Post(id: postId, caption: caption, imageUrl: imageUrl, likes: likes)
+                            // TODO: Add posting user name and image URL
+                            if let userId = dict["postingUser"] as? String {
+                                postingUserId = userId
+                            }
+                            
+                            let post = Post(id: postId, caption: caption, imageUrl: imageUrl, likes: likes, postingUserId: postingUserId)
                             postList.append(post)
                         }
                     }
@@ -97,6 +109,21 @@ class DataService {
                     self.downloadCompleteDelegate?.handlePostsUpdated(posts: postList)
                 }
             }
+        })
+    }
+    
+    func downloadUserDetailsOfUser(for post: Post, with completion: @escaping () -> Void) {
+        USERS_REF.child(post.postUserId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userInfo = snapshot.value as? Dictionary<String, Any> {
+                print(userInfo.count)
+                guard let name = userInfo["name"] as? String, let photoUrl = userInfo["photoUrl"] as? String, let provider = userInfo["provider"] as? String else {
+                    return
+                }
+                let usr = AppUser(userId: post.postUserId, userName: name, provider: provider, photoUrl: URL(string: photoUrl))
+                post.postingUser = usr
+                completion()
+            }
+            
         })
     }
 }

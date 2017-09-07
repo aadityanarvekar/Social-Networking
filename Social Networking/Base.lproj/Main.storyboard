@@ -217,12 +217,26 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-profile" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-m9-3JM">
+                                        <rect key="frame" x="327" y="20.5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="LaF-OL-e3r"/>
+                                            <constraint firstAttribute="width" secondItem="aoe-m9-3JM" secondAttribute="height" multiplier="1:1" id="SYZ-x3-1vQ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundedSquareView" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowView" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="V8I-aO-o2S" firstAttribute="centerX" secondItem="bc9-Xl-tRM" secondAttribute="centerX" id="1f2-72-EbN"/>
+                                    <constraint firstItem="aoe-m9-3JM" firstAttribute="centerY" secondItem="V8I-aO-o2S" secondAttribute="centerY" id="HB5-nG-TgE"/>
                                     <constraint firstItem="phh-qp-NDw" firstAttribute="centerY" secondItem="bc9-Xl-tRM" secondAttribute="centerY" constant="7" id="PtI-uq-hhL"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aoe-m9-3JM" secondAttribute="bottom" constant="2" id="YLh-we-H6T"/>
                                     <constraint firstAttribute="height" constant="65" id="fko-LG-Wsg"/>
+                                    <constraint firstAttribute="trailing" secondItem="aoe-m9-3JM" secondAttribute="trailing" constant="8" id="hKd-Eq-iVT"/>
                                     <constraint firstItem="phh-qp-NDw" firstAttribute="leading" secondItem="bc9-Xl-tRM" secondAttribute="leading" constant="8" id="r8H-67-WZu"/>
                                     <constraint firstItem="V8I-aO-o2S" firstAttribute="centerY" secondItem="phh-qp-NDw" secondAttribute="centerY" id="v9j-6T-lkM"/>
                                 </constraints>
@@ -315,7 +329,7 @@
                                                                 <stackView contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SsH-i9-R5W">
                                                                     <rect key="frame" x="0.0" y="0.0" width="333" height="45"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aadi1" translatesAutoresizingMaskIntoConstraints="NO" id="p0c-zq-pTb">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Post_Profile" translatesAutoresizingMaskIntoConstraints="NO" id="p0c-zq-pTb">
                                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="p0c-zq-pTb" secondAttribute="height" multiplier="1:1" id="2Bg-NQ-1oQ"/>
@@ -325,7 +339,7 @@
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowView" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aadi Narvekar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BA7-G1-KfZ">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BA7-G1-KfZ">
                                                                             <rect key="frame" x="50" y="0.0" width="233" height="45"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                                                             <color key="textColor" red="0.87058823529999996" green="0.26274509800000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
@@ -458,6 +472,7 @@
                     <connections>
                         <outlet property="addImage" destination="k6N-Lq-Jgx" id="St3-mc-0bu"/>
                         <outlet property="feedTableView" destination="lg4-JL-WyH" id="KdK-Lt-Yly"/>
+                        <outlet property="loggedInUserImg" destination="aoe-m9-3JM" id="RVG-ne-H29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUF-yV-aiS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,11 +481,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Aadi1" width="1845" height="1847"/>
+        <image name="Post_Profile" width="512" height="512"/>
         <image name="add-image" width="88" height="88"/>
         <image name="add-post" width="88" height="88"/>
         <image name="devslopes-logo" width="150" height="94"/>
         <image name="empty-heart" width="70" height="70"/>
+        <image name="empty-profile" width="400" height="400"/>
         <image name="f" width="352" height="328"/>
         <image name="placeholder" width="1280" height="800"/>
         <image name="sign-out" width="92" height="65"/>

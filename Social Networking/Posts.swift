@@ -61,24 +61,37 @@ class Post {
         }
     }
     
+    private var _postUserId: String!
+    var postUserId: String {
+        get {
+            return _postUserId
+        }
+    }
     
-    init(id: String, caption: String, imageUrl: String, likes: Int) {
+    private var _postingUser: AppUser!
+    var postingUser: AppUser {
+        get {
+            return _postingUser
+        }
+        
+        set {
+            _postingUser = newValue
+        }
+    }
+    
+
+    
+    init(id: String, caption: String, imageUrl: String, likes: Int, postingUserId: String) {
         _postId = id
         _caption = caption
         _imageUrl = imageUrl
         _likes = likes
+        _postUserId = postingUserId
     }
     
-    init(id: String, caption: String, imageUrl: String) {
-        _postId = id
-        _caption = caption
-        _imageUrl = imageUrl
-        _likes = 0
-    }
     
     func incrementnumberOfLikes(for post: Post) {
         post.likes += 1
     }
-
     
 }

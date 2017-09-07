@@ -17,6 +17,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     @IBOutlet weak var addImage: UIImageView!
     private var imagePicker = UIImagePickerController()    
     private var posts: [Post] = [Post]()
+    @IBOutlet weak var loggedInUserImg: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +33,26 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         
         DataService.shared.downloadCompleteDelegate = self
         DataService.shared.getPostList()
-        
-        // TODO: Download user details & update profile image and display name      
+                
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let imgUrl = DataService.shared.appUser?.photoUrl, imgUrl != DEFAULT_PROFILE_IMAGE {
+            URLSession.shared.dataTask(with: imgUrl, completionHandler: { (data, response, err) in
+                guard err == nil, data != nil else {
+                    print("Error retrieving image for logged in user. Error: \(err.debugDescription)")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.loggedInUserImg.image = UIImage(data: data!)
+                }
+            }).resume()
+        }
     }
     
     @IBAction func logoutBtnTapped(_ sender: Any) {
@@ -55,6 +70,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         if FBSDKAccessToken.current() != nil {
             FBSDKLoginManager().logOut()
         }
+        
+        DataService.shared.appUser = nil
         
         DataService.shared.isPostsDownloadComplete = false
         dismiss(animated: true, completion: nil)
@@ -82,6 +99,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedTableViewCell {
             cell.configureFeedCell(post: posts[indexPath.row])
+            cell.postLikedDelegate = self
             return cell
         } else {
             print("Incorrect cell dequeued")
@@ -113,10 +131,19 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     
 }
 
+// MARK: Extension/Protocol Implementations
+
 extension FeedVC: UserDetailsDownloadComplete {
     func handleUserDetailsDownloadComplete(user: AppUser) {
         if DataService.shared.isPostsDownloadComplete {
             feedTableView.reloadData()
         }
+    }
+}
+
+
+extension FeedVC: PostLiked {
+    func handleUserLikedPost(post: Post, liked: Bool) {
+        DataService.shared.toggleLikeStatus(for: post, liked: liked)
     }
 }

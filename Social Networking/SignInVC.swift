@@ -150,22 +150,6 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func saveUserToKeychain(withId id: String, provider: String) {
-        let result = KeychainWrapper.standard.set(id, forKey: KEYCHAIN_KEY)
-        print("User saved to keychain: \(result)")
-        
-        if let _ = emailAddressTxtField.text, let _ = passwordTxtField.text {
-            emailAddressTxtField.text = ""
-            passwordTxtField.text = ""
-        }
-        let uData: Dictionary<String, String> = ["provider" : provider]
-        DataService.shared.createFirebaseDBUser(with: id, userData: uData)
-        EZLoadingActivity.hide(true, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            self.performSegue(withIdentifier: "FeedVC", sender: id)
-        }
-    }
-    
     private func saveUserToKeychain(user: User, provider: String) {
         // Create App User
         let appUser = AppUser(userId: user.uid, userName: user.displayName, provider: provider, photoUrl: user.photoURL)
