@@ -473,6 +473,7 @@
                         <outlet property="addImage" destination="k6N-Lq-Jgx" id="St3-mc-0bu"/>
                         <outlet property="feedTableView" destination="lg4-JL-WyH" id="KdK-Lt-Yly"/>
                         <outlet property="loggedInUserImg" destination="aoe-m9-3JM" id="RVG-ne-H29"/>
+                        <outlet property="newPostTxt" destination="iYV-BB-PKQ" id="WgW-nD-SkF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUF-yV-aiS" userLabel="First Responder" sceneMemberID="firstResponder"/>

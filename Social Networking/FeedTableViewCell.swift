@@ -68,9 +68,7 @@ class FeedTableViewCell: UITableViewCell {
                     self.postUserProfileImg.contentMode = .scaleAspectFill
                 }
             }).resume()
-            
         }
-
     }
     
     func toggleLikeStatus() {

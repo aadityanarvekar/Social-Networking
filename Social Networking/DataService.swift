@@ -126,4 +126,37 @@ class DataService {
             
         })
     }
+    
+    func createNewPost(post: Post, img: UIImage?, completion: @escaping () -> Void) {
+        guard let usr = appUser else {
+            print("Error! User not initialized!")
+            return
+        }
+        
+        if let postImage = img {
+            let imgData = UIImagePNGRepresentation(postImage)
+            let imgReference = STORAGE_REFERENCE.child("\(post.postId).png")
+            imgReference.putData(imgData!, metadata: nil, completion: { (storageMd, error) in
+                guard error == nil else { return }
+                imgReference.downloadURL(completion: { (url, error) in
+                    guard error == nil else { return }
+                    if let imgUrl = url {
+                        post.imageUrl = imgUrl.absoluteString
+                        let postDict = ["caption": post.caption, "imageUrl": post.imageUrl, "likes": post.likes, "postingUser":post.postUserId] as [String : Any]
+                        POSTS_REF.child(post.postId).updateChildValues(postDict)
+                        USERS_REF.child("\(usr.userId)/posts").updateChildValues([post.postId: true])
+                        completion()
+                        return
+                    }
+                })
+                
+            }).resume()
+        } else {
+            let postDict = ["caption": post.caption, "imageUrl": post.imageUrl, "likes": post.likes, "postingUser":post.postUserId] as [String : Any]
+            POSTS_REF.child(post.postId).updateChildValues(postDict)
+            USERS_REF.child("\(usr.userId)/posts").updateChildValues([post.postId: true])
+            completion()
+        }
+    }    
+    
 }

@@ -10,15 +10,18 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 import FBSDKLoginKit
+import UITextField_Shake
+import EZLoadingActivity
 
 class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PostsDownloadComplete {
     
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var addImage: UIImageView!
-    private var imagePicker = UIImagePickerController()    
+    private var imagePicker = UIImagePickerController()
+//    private var postImage: UIImageView?
     private var posts: [Post] = [Post]()
     @IBOutlet weak var loggedInUserImg: UIImageView!
-    
+    @IBOutlet weak var newPostTxt: InsetTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,10 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         feedTableView.dataSource = self
         feedTableView.delegate = self
         
+        newPostTxt.delegate = self
+        
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImageForPost))
         addImage.addGestureRecognizer(tapGesture)
         
@@ -79,7 +85,21 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     }
     
     @IBAction func createPostBtnTapped(_ sender: Any) {
-        
+        guard let usr = DataService.shared.appUser else { return }
+        if let text = newPostTxt.text, text != "" {
+            EZLoadingActivity.show("Creating post...", disableUI: true)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
+                let postId = NSDate().timeIntervalSince1970.significandBitPattern
+                let post = Post(id: "\(postId)", caption: text, imageUrl: "", likes: 0, postingUserId: usr.userId)
+                DataService.shared.createNewPost(post: post, img: self.addImage?.image, completion: {
+                    EZLoadingActivity.hide(true, animated: true)
+                })
+            })
+        } else {
+            newPostTxt.shake(10, withDelta: 5, completion: { 
+                self.newPostTxt.placeholder = "Caption your post..."
+            })
+        }
     }
     
     func selectImageForPost() {
@@ -113,7 +133,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImage.image = selectedImage
             addImage.layer.cornerRadius = addImage.frame.size.width / 2.0
             addImage.layer.masksToBounds = true
@@ -146,4 +166,8 @@ extension FeedVC: PostLiked {
     func handleUserLikedPost(post: Post, liked: Bool) {
         DataService.shared.toggleLikeStatus(for: post, liked: liked)
     }
+}
+
+extension FeedVC: UITextFieldDelegate {
+    
 }

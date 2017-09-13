@@ -44,6 +44,8 @@ class Post {
         set {
             if newValue.characters.count > 0 {
                 _imageUrl = newValue
+            } else {
+                _imageUrl = DEFAULT_POST_IMAGE
             }
         }
     }
@@ -77,14 +79,12 @@ class Post {
         set {
             _postingUser = newValue
         }
-    }
-    
-
+    }    
     
     init(id: String, caption: String, imageUrl: String, likes: Int, postingUserId: String) {
         _postId = id
         _caption = caption
-        _imageUrl = imageUrl
+        self.imageUrl = imageUrl
         _likes = likes
         _postUserId = postingUserId
     }
