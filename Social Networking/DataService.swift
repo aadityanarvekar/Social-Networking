@@ -145,8 +145,7 @@ class DataService {
                         let postDict = ["caption": post.caption, "imageUrl": post.imageUrl, "likes": post.likes, "postingUser":post.postUserId] as [String : Any]
                         POSTS_REF.child(post.postId).updateChildValues(postDict)
                         USERS_REF.child("\(usr.userId)/posts").updateChildValues([post.postId: true])
-                        completion()
-                        return
+                        completion()                        
                     }
                 })
                 

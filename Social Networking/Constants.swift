@@ -21,3 +21,5 @@ let STORAGE_REFERENCE = Storage.storage().reference().child("Social-Application/
 let DEFAULT_PROFILE_IMAGE = URL(string: "https://firebasestorage.googleapis.com/v0/b/social-application-84c74.appspot.com/o/Profile.png?alt=media&token=0319267f-185a-4f9e-a23e-e7ec6e2b1df0")!
 
 let DEFAULT_POST_IMAGE = "https://firebasestorage.googleapis.com/v0/b/social-application-84c74.appspot.com/o/placeholder.png?alt=media&token=353700fb-5eec-44b9-94a0-a5fcbe80260e"
+
+let IMAGE_CACHE: NSCache<NSString, UIImage> = NSCache()

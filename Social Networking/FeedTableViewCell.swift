@@ -22,9 +22,8 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var numberOfLikes: UILabel!
     
     var selectedPost: Post?
-    var postLikedDelegate: PostLiked?
+    var postLikedDelegate: PostLiked?        
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,24 +31,36 @@ class FeedTableViewCell: UITableViewCell {
         postLikeImg.addGestureRecognizer(tapGesture)
     }
     
-    func configureFeedCell(post: Post) {
+    func configureFeedCell(post: Post, postImg: UIImage? = nil, postUserImg: UIImage? = nil) {
         selectedPost = post
         postDescription.text = post.caption
         numberOfLikes.text = "\(post.likes)"
-        if let imageUrl = URL(string: post.imageUrl) {
-            URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, res, err) in
-                if err == nil {
-                    if let _ = data {                        
-                        DispatchQueue.main.async {
-                            self.postImg.image = UIImage(data: data!)
-                            self.postImg.contentMode = .scaleAspectFill
+        
+        if let postImage = postImg {
+            self.postImg.image = postImage
+            self.postImg.contentMode = .scaleAspectFill
+        } else {
+            if let imageUrl = URL(string: post.imageUrl) {
+                URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, res, err) in
+                    if err == nil {
+                        if let _ = data {
+                            DispatchQueue.main.async {
+                                let postImage = UIImage(data: data!)
+                                self.postImg.image = postImage
+                                self.postImg.contentMode = .scaleAspectFill
+                                
+                                // TODO: Cache image
+                                IMAGE_CACHE.setObject(postImage!, forKey: post.imageUrl as NSString)
+                            }
                         }
+                    } else {
+                        print("Unable to download image from url: \(err.debugDescription)")
                     }
-                } else {
-                    print("Unable to download image from url: \(err.debugDescription)")
-                }
-            }).resume()                        
+                }).resume()                        
+            }
+
         }
+        
         if let usr = DataService.shared.appUser {
             if usr.doesUserLikePost(post: post) {
                 postLikeImg.image = UIImage(named: "filled-heart")
@@ -58,16 +69,23 @@ class FeedTableViewCell: UITableViewCell {
             }
         }
         
-        DataService.shared.downloadUserDetailsOfUser(for: post) { 
-            self.postUserName.text = post.postingUser.userName
-            let imgUrl = post.postingUser.photoUrl
-            URLSession.shared.dataTask(with: imgUrl, completionHandler: { (data, response, err) in
-                guard err == nil, data != nil else { return }
-                DispatchQueue.main.async {
-                    self.postUserProfileImg.image = UIImage(data: data!)
-                    self.postUserProfileImg.contentMode = .scaleAspectFill
-                }
-            }).resume()
+        if let userImg = postUserImg {
+            self.postUserProfileImg.image = userImg
+            self.postUserProfileImg.contentMode = .scaleAspectFill
+        } else {
+            DataService.shared.downloadUserDetailsOfUser(for: post) {
+                self.postUserName.text = post.postingUser.userName
+                let imgUrl = post.postingUser.photoUrl
+                URLSession.shared.dataTask(with: imgUrl, completionHandler: { (data, response, err) in
+                    guard err == nil, data != nil else { return }
+                    DispatchQueue.main.async {
+                        let postUserImage = UIImage(data: data!)
+                        self.postUserProfileImg.image = postUserImage
+                        self.postUserProfileImg.contentMode = .scaleAspectFill
+                        IMAGE_CACHE.setObject(postUserImage!, forKey: imgUrl.absoluteString as NSString)
+                    }
+                }).resume()
+            }
         }
     }
     

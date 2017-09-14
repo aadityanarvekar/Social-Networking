@@ -118,7 +118,13 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedTableViewCell {
-            cell.configureFeedCell(post: posts[indexPath.row])
+            let post = posts[indexPath.row]
+            // TODO: Check if image exists in cache
+            if let img = IMAGE_CACHE.object(forKey: post.imageUrl as NSString), let postUserImg = IMAGE_CACHE.object(forKey: post.postingUser.photoUrl.absoluteString as NSString) {
+                cell.configureFeedCell(post: post, postImg: img, postUserImg: postUserImg)
+            } else {
+                cell.configureFeedCell(post: post)
+            }
             cell.postLikedDelegate = self
             return cell
         } else {
