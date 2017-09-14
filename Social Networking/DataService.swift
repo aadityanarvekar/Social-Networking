@@ -102,6 +102,7 @@ class DataService {
                             }
                             
                             let post = Post(id: postId, caption: caption, imageUrl: imageUrl, likes: likes, postingUserId: postingUserId)
+                            //downloadUserDetailsOfUser(for: post, with: nil)
                             postList.append(post)
                         }
                     }

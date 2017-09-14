@@ -93,6 +93,9 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
                 let post = Post(id: "\(postId)", caption: text, imageUrl: "", likes: 0, postingUserId: usr.userId)
                 DataService.shared.createNewPost(post: post, img: self.addImage?.image, completion: {
                     EZLoadingActivity.hide(true, animated: true)
+                    self.newPostTxt.text = ""
+                    self.newPostTxt.placeholder = "Post Details..."
+                    self.addImage.image = UIImage(named: "add-image")
                 })
             })
         } else {
