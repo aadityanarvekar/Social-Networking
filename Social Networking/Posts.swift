@@ -87,7 +87,7 @@ class Post {
         self.imageUrl = imageUrl
         _likes = likes
         _postUserId = postingUserId
-        _postingUser = DataService.shared.appUser
+        //_postingUser = DataService.shared.appUser
     }
     
     

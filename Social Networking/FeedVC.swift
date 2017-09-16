@@ -91,6 +91,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
                 let postId = NSDate().timeIntervalSince1970.significandBitPattern
                 let post = Post(id: "\(postId)", caption: text, imageUrl: "", likes: 0, postingUserId: usr.userId)
+                post.postingUser = usr
                 DataService.shared.createNewPost(post: post, img: self.addImage?.image, completion: {
                     EZLoadingActivity.hide(true, animated: true)
                     self.newPostTxt.text = ""

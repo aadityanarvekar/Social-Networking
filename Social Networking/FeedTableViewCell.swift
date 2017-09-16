@@ -69,12 +69,12 @@ class FeedTableViewCell: UITableViewCell {
             }
         }
         
-        if let userImg = postUserImg {
-            self.postUserProfileImg.image = userImg
-            self.postUserProfileImg.contentMode = .scaleAspectFill
-        } else {
-            DataService.shared.downloadUserDetailsOfUser(for: post) {
-                self.postUserName.text = post.postingUser.userName
+        DataService.shared.downloadUserDetailsOfUser(for: post) {
+            self.postUserName.text = post.postingUser.userName
+            if let userImg = postUserImg {
+                self.postUserProfileImg.image = userImg
+                self.postUserProfileImg.contentMode = .scaleAspectFill
+            } else {
                 let imgUrl = post.postingUser.photoUrl
                 URLSession.shared.dataTask(with: imgUrl, completionHandler: { (data, response, err) in
                     guard err == nil, data != nil else { return }
@@ -87,6 +87,7 @@ class FeedTableViewCell: UITableViewCell {
                 }).resume()
             }
         }
+        
     }
     
     func toggleLikeStatus() {

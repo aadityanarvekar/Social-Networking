@@ -28,6 +28,7 @@ class DataService {
     static let shared = DataService()
     var appUser: AppUser?
     var isPostsDownloadComplete = false
+    var postList: [Post] = [Post]()
     
     func createFirebaseDBUser(with uid: String, userData: Dictionary<String, String>) {
         USERS_REF.child(uid).updateChildValues(userData)
@@ -76,7 +77,7 @@ class DataService {
         POSTS_REF.observe(DataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? Dictionary<String, Any> {
                 if posts.count > 0 {
-                    var postList: [Post] = [Post]()
+                    self.postList.removeAll()
                     for post in posts {
                         let postId = post.key
                         var likes = 0;
@@ -96,21 +97,42 @@ class DataService {
                                 likes = lks
                             }
                             
-                            // TODO: Add posting user name and image URL
                             if let userId = dict["postingUser"] as? String {
-                                postingUserId = userId
-                            }
+                                postingUserId = userId                                
+                            }                                                        
                             
                             let post = Post(id: postId, caption: caption, imageUrl: imageUrl, likes: likes, postingUserId: postingUserId)
-                            //downloadUserDetailsOfUser(for: post, with: nil)
-                            postList.append(post)
+                            self.postList.append(post)
                         }
                     }
-                    self.isPostsDownloadComplete = true
-                    self.downloadCompleteDelegate?.handlePostsUpdated(posts: postList)
+                    self.getPostingUserForDownloadedPosts()
                 }
             }
         })
+    }
+    
+    func getPostingUserForDownloadedPosts() {
+        var count = 0
+        for post in self.postList {
+            USERS_REF.child(post.postUserId).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let info = snapshot.value as? Dictionary<String, Any> {
+                    guard let name = info["name"] as? String, let photoUrl = info["photoUrl"] as? String, let provider = info["provider"] as? String else {
+                        print("Error getting user details for post!")
+                        return
+                    }
+                    
+                    let usr = AppUser(userId: post.postUserId, userName: name, provider: provider, photoUrl: URL(string: photoUrl))
+                    post.postingUser = usr
+                    count += 1
+                }
+                
+                if count == self.postList.count {
+                    self.isPostsDownloadComplete = true
+                    self.downloadCompleteDelegate?.handlePostsUpdated(posts: self.postList)
+                }
+            })
+        }
+        
     }
     
     func downloadUserDetailsOfUser(for post: Post, with completion: @escaping () -> Void) {
@@ -136,8 +158,10 @@ class DataService {
         
         if let postImage = img {
             let imgData = UIImagePNGRepresentation(postImage)
-            let imgReference = STORAGE_REFERENCE.child("\(post.postId).png")
-            imgReference.putData(imgData!, metadata: nil, completion: { (storageMd, error) in
+            let imgReference = STORAGE_REFERENCE.child("\(post.postId).jpeg")
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            imgReference.putData(imgData!, metadata: metadata, completion: { (storageMd, error) in
                 guard error == nil else { return }
                 imgReference.downloadURL(completion: { (url, error) in
                     guard error == nil else { return }
